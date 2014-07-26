@@ -2,7 +2,46 @@
   %h1 LinkedIn#index
   %p Find me in app/views/linked_in/index.html.haml
   = link_to 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=758rlot27c5c8k&scope=r_fullprofile&state=DCEEFWF45453sdffef424&redirect_uri=http://localhost:3000' do
-    %i.fa.fa-linkedin
+    %i.fa.fa-linkedin{style: "font-size: 32px;"}
+  = link_to '/auth/facebook' do
+    %i.fa.fa-facebook-square{style: "font-size: 32px;"}
   %br
-  =# link_to 'click me', "https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=#{@code}&redirect_uri=http://localhost:3000&client_id=#{PRIV[:li_key]}&client_secret=#{PRIV[:li_secret]}"
-  = link_to 'click me', linked_in_index_path(code: @code)
+  - if @fb_profile && @positions
+    .row
+      .col-md-3
+        = image_tag @fb_profile.get_picture("me", {type: 'large'}), class: 'img-circle'
+      .col-md-9
+        %b Name:
+        = @fb_profile.get_object("me")["name"]
+        %br
+        %b Birthday:
+        = @fb_profile.get_object("me")["birthday"]
+        %br
+        %b Facebook Page:
+        = link_to @fb_profile.get_object("me")["link"], @fb_profile.get_object("me")["link"], target: '_blank'
+    %p.bg-primary.text-center EXPERIENCE
+    - @positions.each do |p|
+      %b Title:
+      = p["title"]
+      %br
+      %b Company
+      = p["company"]["name"]
+      %br
+      %b Start Date:
+      = "#{month_name(p['start_date']['month'])}, #{p['start_date']['year']}"
+      - if p["is_current"] == 'false'
+        %br
+        %b End Date:
+        = "#{month_name(p['end_date']['month'])}, #{p['end_date']['year']}"
+      %br
+      %br
+      = p["summary"]
+      %hr
+    %p.bg-primary.text-center SKILLS
+    .container
+      - @skills.each_slice(2) do |skill|
+        .row
+          .col-md-6
+            = skill[0]["skill"]["name"]
+          .col-md-6
+            = skill[1]["skill"]["name"] if skill[1]

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'linked_in/index'
+  post 'linked_in/li_log' => 'linked_in#li_log'
   get 'linked_in/access_token'
   get 'linked_in/facebook'
   get 'linked_in/fb_log'

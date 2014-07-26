@@ -2,3 +2,6 @@
   %h1 Facebook
   = link_to '/auth/facebook' do
     %i.fa.fa-facebook-square{style: "font-size: 32px;"}
+  - if @photos 
+    - @photos[0]["images"].each do |photo|
+      = image_tag photo["source"], "ng-hide" => "true"

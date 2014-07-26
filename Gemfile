@@ -36,6 +36,7 @@ gem 'carrierwave'
 gem 'angularjs-rails'
 gem "linkedin"
 gem 'oauth2'
+gem 'twitter'
 
 group :development, :test do 
   gem 'pry'

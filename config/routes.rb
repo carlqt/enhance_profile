@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'linked_in/index'
   get 'linked_in/access_token'
+  get 'linked_in/facebook'
+  get 'linked_in/fb_log'
+  get 'auth/:provider/callback' => 'linked_in#facebook'
   root 'linked_in#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -6,6 +6,17 @@ class LinkedInController < ApplicationController
     xml_profile = HTTParty.get("https://api.linkedin.com/v1/people/~:(first-name,skills)?oauth2_access_token=#{access_token}")
   end
 
+  def facebook
+    if env["omniauth.auth"]
+      @profile = env["omniauth.auth"]
+      binding.pry
+    end
+  end
+
+  def fb_log
+
+  end
+
   def access_token
   end
 end

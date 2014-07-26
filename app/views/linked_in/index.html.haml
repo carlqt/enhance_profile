@@ -1,0 +1,8 @@
+.container
+  %h1 LinkedIn#index
+  %p Find me in app/views/linked_in/index.html.haml
+  = link_to 'https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=758rlot27c5c8k&scope=r_fullprofile&state=DCEEFWF45453sdffef424&redirect_uri=http://localhost:3000' do
+    %i.fa.fa-linkedin
+  %br
+  =# link_to 'click me', "https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=#{@code}&redirect_uri=http://localhost:3000&client_id=#{PRIV[:li_key]}&client_secret=#{PRIV[:li_secret]}"
+  = link_to 'click me', linked_in_index_path(code: @code)

@@ -34,9 +34,11 @@ gem 'autoprefixer-rails'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'angularjs-rails'
-gem "linkedin"
-gem 'oauth2'
+gem "linkedin-oauth2"
+gem 'oauth2',   '~> 0.8'
 gem 'twitter'
+gem "font-awesome-rails"
+gem 'httparty'
 
 group :development, :test do 
   gem 'pry'

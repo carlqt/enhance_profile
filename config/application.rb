@@ -6,8 +6,13 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+PRIV = YAML.load(File.read(File.expand_path('../private.yml', __FILE__)))
+PRIV.merge! PRIV.fetch(Rails.env, {})
+PRIV.symbolize_keys!
+
 module EnhanceProfile
   class Application < Rails::Application
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

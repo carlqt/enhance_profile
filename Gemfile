@@ -34,6 +34,8 @@ gem 'autoprefixer-rails'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'angularjs-rails'
+gem "linkedin"
+gem 'oauth2'
 
 group :development, :test do 
   gem 'pry'

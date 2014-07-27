@@ -1,0 +1,27 @@
+.wrapper-pg1
+  %p.bg-primary.text-center EXPERIENCE
+  - @positions.each do |p|
+    %b Title:
+    = p["title"]
+    %br
+    %b Company
+    = p["company"]["name"]
+    %br
+    %b Start Date:
+    = "#{month_name(p['start_date']['month'])}, #{p['start_date']['year']}"
+    - if p["is_current"] == 'false'
+      %br
+      %b End Date:
+      = "#{month_name(p['end_date']['month'])}, #{p['end_date']['year']}"
+    %br
+    %br
+    = p["summary"]
+    %hr
+  %p.bg-primary.text-center SKILLS
+  .container
+    - @skills.each_slice(2) do |skill|
+      .row
+        .col-md-6
+          = skill[0]["skill"]["name"]
+        .col-md-6
+          = skill[1]["skill"]["name"] if skill[1]

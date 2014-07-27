@@ -38,6 +38,7 @@ class LinkedInController < ApplicationController
   end
 
   def fb_log
+    
 
   end
 

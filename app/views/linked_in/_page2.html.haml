@@ -1,0 +1,6 @@
+%p.bg-primary.text-center GROUPS
+- @fb_profile.get_connections("me", "groups").each do |p|
+  = p["name"]
+  %br
+%p.bg-primary.text-center SKILLS
+.container

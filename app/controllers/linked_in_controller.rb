@@ -4,7 +4,7 @@ class LinkedInController < ApplicationController
       @code = params[:code]
       http = HTTParty.post("https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code&code=#{@code}&redirect_uri=http://localhost:3000&client_id=#{PRIV[:li_key]}&client_secret=#{PRIV[:li_secret]}")
       access_token = http["access_token"]
-      @xml_profile = HTTParty.get("https://api.linkedin.com/v1/people/~:(first-name,skills,phone-numbers,positions,picture-url)?oauth2_access_token=#{access_token}")
+      @xml_profile = HTTParty.get("https://api.linkedin.com/v1/people/~:(summary,first-name,skills,phone-numbers,positions,picture-url)?oauth2_access_token=#{access_token}")
       Profile.find_by_smedia('linked_in').update_attribute(:object, @xml_profile.to_json)
     end
 
@@ -18,7 +18,6 @@ class LinkedInController < ApplicationController
       @positions = @li_profile["person"]["positions"]["position"]
       @skills = @li_profile["person"]["skills"]["skill"]
     end
-
   end
 
   def li_log
